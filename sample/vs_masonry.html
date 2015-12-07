@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jQuery-RTile Demo</title>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="">
+<!--&#91;if lt IE 9&#93;>
+<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<!&#91;endif&#93;-->
+<link rel="shortcut icon" href="">
+<style>
+div.img.masonry {
+  width: 180px;
+}
+img {
+  width: 99%;
+  width: 99%;
+}
+.img {
+  display: block;
+  background-color: silver;
+  margin: 0 3px;
+  margin-bottom: 5px;
+  font-size: 9pt;
+}
+td {
+  vertical-align: top;
+}
+</style>
+</head>
+<body>
+  <div style="text-align:center">
+    <h1>
+      jQuery-RTile vs. Masonry
+    </h1>
+  </div>
+  <table width="100%">
+    <tr>
+      <th width="45%">jQuery-RTile</th>
+      <th width="45%">Masonry</th>
+    </tr>
+    <tr>
+      <td>
+        <div id="rtile"></div>
+      </td>
+      <td>
+        <div id="masonry"></div>
+      </td>
+    </tr>
+  </table>
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/observe.js"></script>
+  <script src="../js/jquery-rtile.js"></script>
+  <script src="../js/masonry.pkgd.min.js"></script>
+
+  <script>
+        $("#rtile").rtile(
+          {
+            minWidth: 150,
+            deley: 200
+          }
+        );
+
+        var images = [
+          "0B1lqLRKBKnyDYUR2dnlGaU5FSFk",
+          "0B1lqLRKBKnyDdEVxTWhxdGR3cVk",
+          "0B1lqLRKBKnyDc1V0OHpfSFY5SHM",
+          "0B1lqLRKBKnyDZEtSRERxR3oydUE",
+          "0B1lqLRKBKnyDUkVSMHBZNVc0bm8",
+          "0B1lqLRKBKnyDcklTaWNVMmJmemM",
+          "0B1lqLRKBKnyDd2hlVENKTVpaTTQ",
+          "0B1lqLRKBKnyDSGxCdXJPVFJxbjA",
+          "0B1lqLRKBKnyDN0RpMDFzMWY3UlE",
+          "0B1lqLRKBKnyDM3N1V01LU2k0ejg",
+          "0B1lqLRKBKnyDYzU1WG4tcGVQbWc",
+          "0B1lqLRKBKnyDbjl0S1VQZ2U3X1E",
+          "0B1lqLRKBKnyDRkZMclFGb2JlZVE",
+          "0B1lqLRKBKnyDRVhua21icTUyRGs"
+        ];
+
+        var count = 30;
+        for (var i=0; i<count; i++) {
+          var msg = [];
+          for (var j=0; j<Math.floor(Math.random() * 5); j++) {
+            msg.push("test message.");
+          }
+          var imgNum = Math.floor(Math.random() * (images.length - 0.1));
+
+          var url = (imgNum !== 0)? "http://drive.google.com/uc?export=view&id=" + images[imgNum]: "";
+          var img = (url === "")? "": "<img src='" + url + "'>";
+          var elm = "<div class='img rtile'>No." + (i + 1) + "<br>" + msg.join("<br>") + img + "</div>";
+
+          $("#masonry").append(elm);
+          setTimeout(function(elm) {
+            $("#rtile").rtile("add", elm);
+          }, 1, elm);
+        }
+
+        jQuery(function($) {
+          $("#masonry").masonry({
+            itemSelector: '.img',
+            columnWidth: ($("#masonry").width() / 3),
+    		    isFitWidth: true
+          });
+        });
+  </script>
+</body>
+</html>

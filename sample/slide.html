@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>jQuery-RTile Demo</title>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="">
+<!--&#91;if lt IE 9&#93;>
+<script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<!&#91;endif&#93;-->
+<link rel="shortcut icon" href="">
+</head>
+<body>
+  <div style="text-align:center">
+    <h1>
+      jQuery-RTile SlideIn Demo
+    </h1>
+  </div>
+  <div id="rtile"></div>
+  </table>
+
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/observe.js"></script>
+  <script src="../js/jquery-rtile.js"></script>
+  <style>
+  .block {
+    background-color: silver;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    font-size: 9pt;
+  }
+  </style>
+  <script>
+        $("#rtile").rtile({minWidth: 50, deley: 500, transition: "slideIn"});
+        var count = 20;
+        for (var i=0; i<count; i++) {
+          var height = Math.random() * (80 - 10) + 10;
+          var elm = "<div class=\"block\" style=\"height:" + height + "px\">Block No." + (i + 1) + "</div>";
+          $("#rtile").rtile("add", elm);
+        }
+  </script>
+
+</body>
+</html>
